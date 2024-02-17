@@ -1,0 +1,51 @@
+version: "3.7"
+
+volumes:
+  redis_data:
+  notused:
+    driver: local
+
+services:
+  excalidraw-server:
+    container_name: excalidraw
+    image: custom_excalidraw:latest
+    restart: always
+    ports:
+      - 3001:80
+    environment:
+      NODE_ENV: production
+      TZ: Europe/Amsterdam
+      PUB_SRV_NAME: ${PUB_SRV_NAME}
+      PUB_SRV_NAME_WS: ${PUB_SRV_NAME_WS}
+      VITE_APP_BACKEND_V2_GET_URL: ${VITE_APP_BACKEND_V2_GET_URL}
+      VITE_APP_BACKEND_V2_POST_URL: ${VITE_APP_BACKEND_V2_POST_URL}
+      VITE_APP_WS_SERVER_URL: ${VITE_APP_WS_SERVER_URL}
+    volumes:
+      - notused:/opt/node_app/app/node_modules
+
+  excalidraw-room:
+    container_name: excaliroom
+    image: excalidraw/excalidraw-room:latest
+    restart: always
+    environment:
+      TZ: Europe/Amsterdam
+      PORT: 3002
+    ports:
+      - 3002:3002
+
+  excalidraw-storage-backend:
+    stdin_open: true
+    build:
+      context: https://github.com/kitsteam/excalidraw-storage-backend.git#main
+      target: production
+    ports:
+      - "3003:8080"
+    environment:
+      STORAGE_URI: redis://:${REDIS_PASSWORD}@redis:6379
+      STORAGE_TTL: 2592000000
+
+  redis:
+    image: redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
