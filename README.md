@@ -8,6 +8,12 @@ Before you begin, ensure you have met the following requirements:
 
 - Docker installed on your system ([Install Docker](https://docs.docker.com/get-docker/))
 - Docker Compose installed on your system ([Install Docker Compose](https://docs.docker.com/compose/install/))
+- Available domain en subdomains
+- SSL Certificates
+- Webproxy (NginxProxyManager for example )
+  - Main Application: `https://exalidraw.my-own-domain.com -> DOCKER_HOST:3001`
+  - Excalidraw Room: `https://exalidraw-ws.my-own-domain.com -> DOCKER_HOST:3002`
+  - Excalidraw Room: `https://exalidraw-api.my-own-domain.com -> DOCKER_HOST:3003`
 
 ## Usage
 
@@ -28,9 +34,9 @@ Before you begin, ensure you have met the following requirements:
 3. Create a `.env` file and define the necessary environment variables for the Docker build:
 
     ```dotenv
-    PUB_SRV_NAME=your_pub_srv_name_variable (excalidraw.example.com)
-    PUB_SRV_NAME_WS=your_pub_srv_name_ws_variable (excalidraw-ws.example.com)
-    REDIS_PASSWORD=your_redis_password
+    PUB_SRV_NAME=excalidraw.my-own-domain.com
+    PUB_SRV_NAME_WS=excalidraw-ws.my-own-domain.com
+    REDIS_PASSWORD=StrongPasswordInHere
     ```
 
 4. Build the Docker image:
@@ -44,9 +50,9 @@ Before you begin, ensure you have met the following requirements:
 1. Modify the `.env` file to include the necessary environment variables for Docker Compose:
 
     ```dotenv
-    VITE_APP_BACKEND_V2_GET_URL=https://excalidraw-api.example.com/api/v2/scenes/
-    VITE_APP_BACKEND_V2_POST_URL=https://excalidraw-api.example.com/api/v2/scenes/
-    VITE_APP_WS_SERVER_URL=https://excalidraw-ws.example.com/
+    VITE_APP_BACKEND_V2_GET_URL=https://excalidraw-api.my-own-domain.com/api/v2/scenes/
+    VITE_APP_BACKEND_V2_POST_URL=https://excalidraw-api.my-own-domain.com/api/v2/scenes/
+    VITE_APP_WS_SERVER_URL=https://excalidraw-ws.my-own-domain.com/
     ```
 
 2. Modify the `docker-compose.yml` file if necessary.
@@ -59,8 +65,9 @@ Before you begin, ensure you have met the following requirements:
 
 4. Access Excalidraw via a web browser:
 
-    - Main Application: `http://localhost:3001`
-    - Excalidraw Room: `http://localhost:3002`
+    - Main Application: `https://exalidraw.my-own-domain.com`
+    - Excalidraw Room: `https://exalidraw-ws.my-own-domain.com`
+    - Excalidraw Room: `https://exalidraw-api.my-own-domain.com`
 
 5. To stop the containers, run:
 
@@ -76,7 +83,3 @@ Before you begin, ensure you have met the following requirements:
 - `VITE_APP_BACKEND_V2_GET_URL`: API URL for fetching scenes.
 - `VITE_APP_BACKEND_V2_POST_URL`: API URL for posting scenes.
 - `VITE_APP_WS_SERVER_URL`: WebSocket server URL for Excalidraw.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
