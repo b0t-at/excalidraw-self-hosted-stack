@@ -42,7 +42,7 @@ Before you begin, ensure you have met the following requirements:
 4. Build the Docker image:
 
     ```bash
-    docker build -t custom_excalidraw:latest .
+    sudo docker build -t custom_excalidraw:latest .
     ```
 
 ### Running with Docker Compose
@@ -60,7 +60,7 @@ Before you begin, ensure you have met the following requirements:
 3. Run the following command to start the containers:
 
     ```bash
-    docker-compose up -d
+    sudo docker-compose up -d
     ```
 
 4. Access Excalidraw via a web browser:
@@ -72,7 +72,7 @@ Before you begin, ensure you have met the following requirements:
 5. To stop the containers, run:
 
     ```bash
-    docker-compose down
+    sudo docker-compose down
     ```
 
 ## Configuration
