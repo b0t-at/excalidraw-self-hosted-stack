@@ -36,11 +36,12 @@ Before you begin, ensure you have met the following requirements:
     ```dotenv
     PUB_SRV_NAME=excalidraw.my-own-domain.com
     PUB_SRV_NAME_WS=excalidraw-ws.my-own-domain.com
-    REDIS_PASSWORD=StrongPasswordInHere
+
     VITE_APP_BACKEND_V2_GET_URL=https://excalidraw-api.my-own-domain.com/api/v2/scenes/
     VITE_APP_BACKEND_V2_POST_URL=https://excalidraw-api.my-own-domain.com/api/v2/scenes/
     VITE_APP_WS_SERVER_URL=https://excalidraw-ws.my-own-domain.com/
 
+    REDIS_PASSWORD=StrongPasswordInHere
     ```
 
 4. Run the following command to start the containers:
@@ -53,7 +54,7 @@ Before you begin, ensure you have met the following requirements:
 
     - Main Application: `https://exalidraw.my-own-domain.com`
     - Excalidraw Room: `https://exalidraw-ws.my-own-domain.com`
-    - Excalidraw Room: `https://exalidraw-api.my-own-domain.com`
+    - Excalidraw API: `https://exalidraw-api.my-own-domain.com`
 
 
 6. To stop the containers, run:

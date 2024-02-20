@@ -7,16 +7,17 @@ volumes:
 
 services:
   excalidraw-server:
+    container_name: excalidraw-server
     build:
       context: .
       dockerfile: Dockerfile
       args:
-          VITE_APP_BACKEND_V2_GET_URL: ${VITE_APP_BACKEND_V2_GET_URL}
-          VITE_APP_BACKEND_V2_POST_URL: ${VITE_APP_BACKEND_V2_POST_URL}
-          VITE_APP_WS_SERVER_URL: ${VITE_APP_WS_SERVER_URL}
+        VITE_APP_BACKEND_V2_GET_URL: ${VITE_APP_BACKEND_V2_GET_URL}
+        VITE_APP_BACKEND_V2_POST_URL: ${VITE_APP_BACKEND_V2_POST_URL}
+        VITE_APP_WS_SERVER_URL: ${VITE_APP_WS_SERVER_URL}
     restart: always
     ports:
-      - 3001:80
+      - "3001:80"
     environment:
       NODE_ENV: production
       TZ: Europe/Amsterdam
@@ -28,16 +29,16 @@ services:
     volumes:
       - notused:/opt/node_app/app/node_modules
   excalidraw-room:
-    container_name: excaliroom
+    container_name: excalidraw-room
     image: excalidraw/excalidraw-room:latest
     restart: always
     environment:
       TZ: Europe/Amsterdam
       PORT: 3002
     ports:
-      - 3002:3002
-
+      - "3002:3002"
   excalidraw-storage-backend:
+    container_name: excalidraw-storage
     stdin_open: true
     build:
       context: https://github.com/kitsteam/excalidraw-storage-backend.git#main
