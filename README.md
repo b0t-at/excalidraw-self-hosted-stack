@@ -17,7 +17,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Usage
 
-### Building the Docker Image
+### Running with Docker Compose
 
 1. Clone this repository to your local machine:
 
@@ -31,45 +31,32 @@ Before you begin, ensure you have met the following requirements:
     cd excalidraw-self-hosted-stack
     ```
 
-3. Create a `.env` file and define the necessary environment variables for the Docker build:
+3. Edit the `.env` file and define the necessary environment variables for the Docker build:
 
     ```dotenv
     PUB_SRV_NAME=excalidraw.my-own-domain.com
     PUB_SRV_NAME_WS=excalidraw-ws.my-own-domain.com
     REDIS_PASSWORD=StrongPasswordInHere
-    ```
-
-4. Build the Docker image:
-
-    ```bash
-    sudo docker build -t custom_excalidraw:latest .
-    ```
-
-### Running with Docker Compose
-
-1. Modify the `.env` file to include the necessary environment variables for Docker Compose:
-
-    ```dotenv
     VITE_APP_BACKEND_V2_GET_URL=https://excalidraw-api.my-own-domain.com/api/v2/scenes/
     VITE_APP_BACKEND_V2_POST_URL=https://excalidraw-api.my-own-domain.com/api/v2/scenes/
     VITE_APP_WS_SERVER_URL=https://excalidraw-ws.my-own-domain.com/
+
     ```
 
-2. Modify the `docker-compose.yml` file if necessary.
-
-3. Run the following command to start the containers:
+4. Run the following command to start the containers:
 
     ```bash
     sudo docker-compose up -d
     ```
 
-4. Access Excalidraw via a web browser:
+5. Access Excalidraw via a web browser:
 
     - Main Application: `https://exalidraw.my-own-domain.com`
     - Excalidraw Room: `https://exalidraw-ws.my-own-domain.com`
     - Excalidraw Room: `https://exalidraw-api.my-own-domain.com`
 
-5. To stop the containers, run:
+
+6. To stop the containers, run:
 
     ```bash
     sudo docker-compose down
