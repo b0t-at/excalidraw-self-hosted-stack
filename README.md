@@ -31,7 +31,7 @@ Before you begin, ensure you have met the following requirements:
     cd excalidraw-self-hosted-stack
     ```
 
-3. Edit the `.env` file and define the necessary environment variables for the Docker build:
+3. Modify the `.env` file and define the necessary environment variables for the Docker build:
 
     ```dotenv
     PUB_SRV_NAME=excalidraw.my-own-domain.com
