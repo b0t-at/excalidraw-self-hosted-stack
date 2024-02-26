@@ -1,6 +1,6 @@
 # Excalidraw Self-Hosted Stack
 
-This repository provides a self-hosted stack for running Excalidraw with Docker containers. Storage of data is still in Firebase (#3)
+This repository provides a self-hosted stack for running Excalidraw with Docker containers. Storage of data is still in Firebase.
 
 ## Prerequisites
 
