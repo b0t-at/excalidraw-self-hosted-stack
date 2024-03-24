@@ -45,7 +45,7 @@ services:
     container_name: excalidraw-storage
     stdin_open: true
     build:
-      context: https://github.com/kitsteam/excalidraw-storage-backend.git#main
+      context: https://github.com/b0t-at/excalidraw-storage-backend.git#main
       target: production
 #    ports:
 #      - "3003:8080"
