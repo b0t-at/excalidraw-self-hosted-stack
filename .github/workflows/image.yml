@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - b0t-main
+      - main
 env:
   IMAGE_BASE_TAG: git.b0t.at/b0t-at/excalidraw-stack
 
