@@ -1,7 +1,7 @@
 FROM node:21-alpine AS download
 WORKDIR /opt/node_app
 
-RUN wget https://github.com/excalidraw/excalidraw/archive/refs/tags/v0.17.3.tar.gz -O excalidraw.tar.gz
+RUN wget https://github.com/excalidraw/excalidraw/archive/refs/tags/v0.17.6.tar.gz -O excalidraw.tar.gz
 RUN tar -zvxf excalidraw.tar.gz
 RUN mv excalidraw-* excalidraw
 
