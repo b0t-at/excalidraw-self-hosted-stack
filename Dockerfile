@@ -12,6 +12,7 @@ ARG PUB_SRV_NAME_WS=ws.draw.b0t.at
 ARG VITE_APP_BACKEND_V2_GET_URL=https://draw.b0t.at/api/v2/scenes/
 ARG VITE_APP_BACKEND_V2_POST_URL=https://draw.b0t.at/api/v2/scenes/
 ARG VITE_APP_WS_SERVER_URL=https://ws.draw.b0t.at/
+ARG VITE_APP_AI_BACKEND=https://ai.draw.b0t.at/
 
 ENV PUB_SRV_NAME=${PUB_SRV_NAME}
 ENV PUB_SRV_NAME_WS=${PUB_SRV_NAME_WS}
