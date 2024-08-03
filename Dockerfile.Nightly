@@ -1,4 +1,4 @@
-FROM node:20-alpine AS build
+FROM node:18-alpine AS build
 
 ARG PUB_SRV_NAME=draw.b0t.at
 ARG PUB_SRV_NAME_WS=ws.draw.b0t.at
