@@ -64,7 +64,7 @@ services:
       - traefik.http.services.${Service3}.loadbalancer.server.port=${Service3Port}
 
   redis:
-    image: redis
+    image: redis:8.10.3-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes:
       - /opt/docker/excalidraw-stack/redis_data:/data

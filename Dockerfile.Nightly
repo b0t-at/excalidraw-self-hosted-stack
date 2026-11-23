@@ -1,4 +1,4 @@
-FROM node:18-alpine AS build
+FROM node:24-alpine AS build
 
 ARG PUB_SRV_NAME=draw.b0t.at
 ARG PUB_SRV_NAME_WS=ws.draw.b0t.at
@@ -21,12 +21,12 @@ RUN mv excalidraw-* excalidraw
 
 WORKDIR /opt/node_app/excalidraw
 
-RUN yarn install --production=false
+RUN yarn install --frozen-lockfile --production=false
 #RUN yarn add cross-env --ignore-workspace-root-check
 #COPY --from=download /opt/node_app/excalidraw/ .
 RUN yarn build:app:docker
 
-FROM nginx:1.25.4-alpine
+FROM nginx:1.30.7-alpine
 
 COPY --from=build /opt/node_app/excalidraw/excalidraw-app/build /usr/share/nginx/html
 

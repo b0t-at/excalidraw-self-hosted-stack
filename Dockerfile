@@ -1,11 +1,11 @@
-FROM node:21-alpine AS download
+FROM node:22-alpine AS download
 WORKDIR /opt/node_app
 
-RUN wget https://github.com/excalidraw/excalidraw/archive/refs/tags/v0.17.6.tar.gz -O excalidraw.tar.gz
+RUN wget https://github.com/excalidraw/excalidraw/archive/refs/tags/v0.18.1.tar.gz -O excalidraw.tar.gz
 RUN tar -zvxf excalidraw.tar.gz
 RUN mv excalidraw-* excalidraw
 
-FROM node:21-alpine AS build
+FROM node:22-alpine AS build
 
 ARG PUB_SRV_NAME=draw.b0t.at
 ARG PUB_SRV_NAME_WS=ws.draw.b0t.at
@@ -22,14 +22,12 @@ ENV VITE_APP_WS_SERVER_URL=${VITE_APP_WS_SERVER_URL}
 
 WORKDIR /opt/node_app
 
-COPY --from=download /opt/node_app/excalidraw/package.json /opt/node_app/excalidraw/yarn.lock ./
-RUN yarn --ignore-optional --network-timeout 600000
-
 COPY --from=download /opt/node_app/excalidraw/ .
+RUN yarn --frozen-lockfile --network-timeout 600000
 RUN yarn build:app:docker
 
-FROM nginx:1.25.4-alpine
+FROM nginx:1.30.7-alpine
 
-COPY --from=build /opt/node_app/build /usr/share/nginx/html
+COPY --from=build /opt/node_app/excalidraw-app/build /usr/share/nginx/html
 
 HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
